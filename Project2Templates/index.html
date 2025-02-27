@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸</title>
+    <link rel="stylesheet" href="https://use.typekit.net/zqc5nwp.css">
+    <style>
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgb(193, 235, 185);
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.container {
+    width: 400px;
+    position: relative;
+    top: 40%;
+    left: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem;
+    
+}
+
+.text {
+    color: rgb(139, 20, 106);
+    position: relative;
+    font-family: "gardein", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    font-style: normal;
+    margin: 1rem;
+    top: 22%;
+    left: 40%;
+    display: none;
+    opacity: 0.75;
+}
+
+/* STYLE FOR THE IMAGE */
+/* #displayedImage {
+
+    margin: 1rem;
+    height: 50%;
+    width: 50%;
+    display: none; This line is mandatory
+} */
+
+/* STYLE FOR THE INPUT FIELD */
+#charInput {
+
+    left: 50%;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 2rem;
+    font-family: "gardein", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 1rem;
+    caret-color: rgb(139, 20, 106);
+    transition: all 0.2s ease-in-out;
+
+    border: none;
+}
+
+#charInput:hover {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+#charInput:focus {
+    background-color: rgba(255, 255, 255, 0.75);
+
+}
+
+/* STYLE FOR THE SUBMIT BUTTON */
+#submitButton {
+
+
+    background-color: rgba(255, 255, 255, 0.5);
+    left: 50%;
+    top: 60%;
+    height: 4rem;
+    width: 4rem;
+    font-family: "gardein", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: normal;
+    margin: 1rem;
+    padding: 0.5rem;
+    border-radius: 2rem;
+    border: none;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+
+}
+
+#submitButton:hover {
+    cursor: pointer;
+    scale: 1.2;
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+
+@media screen and (max-width: 600px) {
+    html, body {
+        overflow: hidden; 
+        height: 100vh; 
+        width: 100vw; 
+    }
+
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    #charInput {
+
+        width: 60px;
+        height: 60px;
+    }
+
+    #submitButton {
+        scale: 1.1;
+        transition: 0.3s;
+
+    }
+
+    #submitButton:active {
+        background-color: (255, 255, 255, 1);
+    }
+
+    .text {
+        position: relative;
+        top: 32%;
+        left: 28%;
+        /* transform: translate(-50%, -50%); */
+        display: none;
+        opacity: 0.5;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <input type="text" id="charInput" maxlength="1"><!-- INPUT FIELD FOR 1 CHARACTER -->
+        <button onclick="displayImage()" id="submitButton">🌸</button><!-- BUTTON TO DISPLAY IMAGE -->
+    </div>
+
+    <div class="text">enter a letter from a-z:</div>
+
+               <!-- IMAGE TO DISPLAY -->
+    <!-- <img id="displayedImage" src="" alt="Displayed Image"> -->
+
+
+    <!-- Image Display Script Below -->
+    <script>
+        // Array of images
+        // DIRECTIONS: UPDATE THE URLS WITH THE RELATIVE LINKS OF YOUR IMAGES
+        const images = [
+            "https://images.unsplash.com/photo-1624282454118-7cfe8d23457e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //A azalea
+            "https://images.unsplash.com/photo-1533648267452-caf8a2f13c8f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //B baby's breath
+            "https://images.unsplash.com/photo-1708958151986-2b032fde35ce?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //C camelia
+            "https://images.unsplash.com/photo-1601021215663-ee72b7063578?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //D dahlia
+            "https://images.unsplash.com/photo-1654531869060-ecefc08cc62f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //E edelweiss
+            "https://images.unsplash.com/photo-1590231022380-811ce7110775?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //F forget-me-not
+            "https://images.fineartamerica.com/images-medium-large/the-smell-of-a-gardenia-shawn-hughes.jpg", //G gardenia
+            "https://images.unsplash.com/photo-1596985122625-faf96c53e0c6?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //H hibiscus
+            "https://images.unsplash.com/photo-1589312397744-799d9f9c2944?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //I iris
+            "https://help.gardeningexpress.co.uk/wp-content/uploads/2023/08/Untitled-design-64-1024x576.png", //J jasmine
+            "https://upload.wikimedia.org/wikipedia/commons/2/2e/Kerria_japonica01.jpg", //K kerria
+            "https://images.unsplash.com/photo-1533274814154-b8dc5f18c0f8?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //L lily
+            "https://images.unsplash.com/photo-1618988091472-447ea96c7e98?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //M magnolia
+            "https://images.unsplash.com/photo-1576226200771-55da9ac1e6ad?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //N narcissus
+            "https://images.unsplash.com/photo-1608084620964-40ea1ed33e3f?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //O orchid
+            "https://images.unsplash.com/photo-1541214240140-980ad45caeb1?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //P peony
+            "https://hudsonvalleyseed.com/cdn/shop/files/camassia_quamash_4.jpg?v=1682454367&width=1500", //Q quamash
+            "https://images.unsplash.com/photo-1579053778004-3a4d3f0fae19?q=80&w=2934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //R rose
+            "https://images.unsplash.com/photo-1587194121850-6533debb44c4?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //S snowdrop
+            "https://images.unsplash.com/photo-1557086815-b3f1af5fbc1f?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //T tulip
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Ulex_europaeus_flowers.jpg/2560px-Ulex_europaeus_flowers.jpg", //U ulex
+            "https://images.unsplash.com/photo-1490918686724-6b23c27c03d1?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //V violet
+            "https://images.unsplash.com/photo-1494486205133-727224a9f727?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", //W wisteria
+            "https://upload.wikimedia.org/wikipedia/commons/4/4e/Xeranthemum_annuum.JPG", //X xeranthemum
+            "https://backyardforager.com/wp-content/uploads/2018/05/2011-11-06-at-15-39-04-1024x683.jpg", //Y yucca
+            "https://images.unsplash.com/photo-1711403094706-1b78a71a0a34?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"  //Z zinnia
+        ];
+
+        function displayImage() {
+            const input = document.getElementById("charInput").value.toUpperCase();
+            // const imgElement = document.getElementById("displayedImage");
+            const bgElement = document.body;
+            
+
+            
+            // Assign an image based on character (A-Z)
+            const index = input.charCodeAt(0) - 65; // 'A' is 65 in ASCII
+            if (index >= 0 && index < images.length) {
+                // imgElement.src = images[index];
+                bgElement.style.backgroundImage = `url('${images[index]}')`;
+                
+                //imgElement.style.display = "block";
+            } else {
+                
+                alert("Please enter a letter between A and Z.");
+                /* 
+                imgElement.style.display = "none";
+                */
+
+                // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE
+                // imgElement.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmtkdnJhMXY4Njd1cXR3MTM3MW1nMzZ1NXNhNHlhOHA0MWF2dDUzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13dRJkj5wgKq9q/giphy.gif"
+                // imgElement.style.display = "block";
+
+                bgElement.style.backgroundImage = `url('https://media1.tenor.com/m/xugZHvRjP48AAAAC/flowers-wilt.gif')`;
+
+            }
+        }
+
+        const input = document.getElementById("charInput");
+        input.addEventListener(
+        "mouseenter",
+        (event) => {
+            const text = document.querySelector(".text");
+            text.style.display = "block";
+
+        }
+    );
+
+        input.addEventListener(
+        "mouseleave",
+        (event) => {
+            const text = document.querySelector(".text");
+            text.style.display = "none";
+        },
+);
+    </script>
+
+</body>
+</html>
